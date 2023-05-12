@@ -3,19 +3,24 @@ import os
 import requests
 import json
 import urllib3
+import pandas as pd
+
 
 #Blotter data feed for month of May(05) With limit of 5 For testing
 #url = 'https://data.wprdc.org/api/3/action/datastore_search?resource_id=1797ead8-8262-41cc-9099-cbc8a161924b&limit=5&q=2023-05'
 
 #Blotter data feed for month of May(05) no limit
-url = 'https://data.wprdc.org/api/3/action/datastore_search?resource_id=1797ead8-8262-41cc-9099-cbc8a161924b&q=2023-05'
+#url = 'https://data.wprdc.org/api/3/action/datastore_search?resource_id=1797ead8-8262-41cc-9099-cbc8a161924b&q=2023-05'
+
+#Entire Blotter dataset
+url = 'https://data.wprdc.org/api/3/action/datastore_search?resource_id=1797ead8-8262-41cc-9099-cbc8a161924b'
 
 http = urllib3.PoolManager()
 #response = http.get('GET', url).json()['results'][0]
 r = requests.get(url).json()['result']['records']
 #r
-police_data = spark.createDataFrame(json_normalize(r))
-display(data)
+police_data = spark.createDataFrame(pd.json_normalize(r))
+display(police_data)
 
 # COMMAND ----------
 
