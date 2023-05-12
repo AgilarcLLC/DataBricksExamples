@@ -1,4 +1,9 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC ## Stream data from data source
+
+# COMMAND ----------
+
 import os
 import requests
 import json
@@ -24,5 +29,39 @@ display(police_data)
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC ## Convert the data from the blotter API to a Delta Table
+
+# COMMAND ----------
+
 target_table_name = "pittsburgh_police_blotter"
-police_data.write.mode("overwrite").saveAsTable(target_table_name)
+police_data.write.mode("overwrite").saveAsTable("hive_metastore.default.bronze_pittsburgh_police_blotter")
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## Fix the datatypes on the table
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC
+# MAGIC SELECT
+# MAGIC CAST(INCIDENTTIME AS DATE) AS INCIDENTTIME,
+# MAGIC COUNCIL_DISTRICT,
+# MAGIC CLEAREDFLAG,
+# MAGIC HIERARCHY, 
+# MAGIC INCIDENTNEIGHBORHOOD, 
+# MAGIC INCIDENTZONE, 
+# MAGIC INCIDENTTRACT, 
+# MAGIC CCR, 
+# MAGIC INCIDENTHIERARCHYDESC, 
+# MAGIC PUBLIC_WORKS_DIVISION, 
+# MAGIC X, 
+# MAGIC INCIDENTLOCATION, 
+# MAGIC Y, 
+# MAGIC PK, 
+# MAGIC `_id`, 
+# MAGIC OFFENSES
+# MAGIC
+# MAGIC FROM hive_metastore.default.pittsburgh_police_blotter;

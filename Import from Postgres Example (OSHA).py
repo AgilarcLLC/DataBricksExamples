@@ -22,7 +22,7 @@ driver = "org.postgresql.Driver"
 database_host = "165.227.112.243"
 database_port = "5432" # update if you use a non-default port
 database_name = "oshaData" # eg. postgres
-table = "cleansed.ems_injury_overlap" # if your table is in a non-default schema, set as <schema>.<table-name> 
+table = "cleansed.ems_injury_overlap" # if your table is in a non-default schema, set as <schema>.<table-name>
 user = "powerBIUser"
 password = "Agilarc123!"
 
