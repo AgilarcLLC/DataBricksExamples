@@ -39,6 +39,12 @@ police_data.write.mode("overwrite").saveAsTable("hive_metastore.default.bronze_p
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC
+# MAGIC SELECT COUNT(*) FROM default.bronze_pittsburgh_police_blotter
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## Fix the datatypes on the table
 
