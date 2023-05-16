@@ -79,3 +79,32 @@ data.write.mode("overwrite").saveAsTable("hive_metastore.default.bronze_pittsbur
 # COMMAND ----------
 
 display(row_count)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC
+# MAGIC ### This SQL converts the data in the delta table to the correct datatype and creates a silver level table
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC
+# MAGIC CREATE TABLE hive_metastore.default.silver_pittsburgh_rev_exp AS (
+# MAGIC
+# MAGIC SELECT
+# MAGIC CAST(fund_number AS INT) AS fund_number,
+# MAGIC CAST(general_ledger_date AS DATE) AS general_ledger_date,
+# MAGIC CAST(cost_center_number AS INT) AS cost_center_number,
+# MAGIC object_account_description,
+# MAGIC cost_center_description,
+# MAGIC department_name,
+# MAGIC CAST(ledger_code AS INT) AS ledger_code,
+# MAGIC CAST(amount AS DOUBLE) AS amount,
+# MAGIC CAST(object_account_number AS INT) AS object_account_number,
+# MAGIC ledger_descrpition,
+# MAGIC CAST(`_id` AS BIGINT) AS id_pk,
+# MAGIC fund_description,
+# MAGIC CAST(department_number AS INT) AS department_number
+# MAGIC FROM default.bronze_pittsburgh_rev_exp
+# MAGIC );
