@@ -4,10 +4,12 @@
 # MAGIC ## Pittsburgh Data Downloader
 # MAGIC
 # MAGIC ### Purpose: 
-# MAGIC Pulls data from a given WPRDC resource and download
+# MAGIC Pulls data from a given WPRDC (Pittsburgh Open Data) resource and download https://data.wprdc.org/dataset/city-revenues-and-expenses
 # MAGIC
 # MAGIC ### Dev Notes
 # MAGIC API only allows for a max of 50,000 rows through API request. for loop used to gather all rows.
+# MAGIC
+# MAGIC This should also work for any other WPRDC resources
 
 # COMMAND ----------
 
@@ -108,3 +110,15 @@ display(row_count)
 # MAGIC CAST(department_number AS INT) AS department_number
 # MAGIC FROM default.bronze_pittsburgh_rev_exp
 # MAGIC );
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC
+# MAGIC ### Display created table
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC
+# MAGIC SELECT * FROM default.silver_pittsburgh_rev_exp;

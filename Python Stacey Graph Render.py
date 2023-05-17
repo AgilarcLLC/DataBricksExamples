@@ -1,4 +1,12 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC
+# MAGIC ## Using the Plotly library we are able to create dynamic images or graphs.
+# MAGIC
+# MAGIC Next step would include overlaying survey responses on the image in a bubble like fasion where if multiple users anwsers tha same that bubble data point would appear larger.
+
+# COMMAND ----------
+
 import plotly.graph_objects as go
 import plotly.io as pio
 
