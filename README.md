@@ -1,10 +1,6 @@
 # DataBricksExamples
 Collection of Databrick notebooks that can be used as a spring board for other scripts.
 
-Collection of Databrick notebook HTML extracts are also avalible. (WIP)
-
-https://agilarcllc.github.io/DataBricksExamples/HTML%20Files/Python%20Stacey%20Graph%20Render.html
-
 ## How-To Use With DataBricks
 
 1. Click the "Repos" tab in the left-hand navigation menu.
