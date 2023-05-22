@@ -26,9 +26,11 @@ import json
 import urllib3
 import pandas as pd
 
-results = [] 
+results = []
 
-url = 'https://data.wprdc.org/api/3/action/datastore_search?offset=0&limit=1&resource_id=f61f6e8c-7b93-4df3-9935-4937899901c7'
+resource_id = 'f61f6e8c-7b93-4df3-9935-4937899901c7'
+
+url = f'https://data.wprdc.org/api/3/action/datastore_search?offset=0&limit=1&resource_id={resource_id}'
 
 http = urllib3.PoolManager()
 row_count = int(requests.get(url).json()['result']['total'])
@@ -41,7 +43,7 @@ segments_dec = row_count / 10000
 #segments_int
 for i in range(segments_int + 1):
     i = i * 10000
-    r = requests.get(f'https://data.wprdc.org/api/3/action/datastore_search?offset={i}&limit=10000&resource_id=f61f6e8c-7b93-4df3-9935-4937899901c7').json()['result']['records']
+    r = requests.get(f'https://data.wprdc.org/api/3/action/datastore_search?offset={i}&limit=10000&resource_id={resource_id}').json()['result']['records']
     for x in r:
         results.append(x)
 
@@ -81,6 +83,9 @@ data.write.mode("overwrite").saveAsTable("hive_metastore.default.bronze_pittsbur
 # COMMAND ----------
 
 display(row_count)
+
+
+df = spark.table('defaul.bronze_pittsburgh_rev_exp')
 
 # COMMAND ----------
 
