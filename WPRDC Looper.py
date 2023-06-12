@@ -85,7 +85,7 @@ data.write.mode("overwrite").saveAsTable("hive_metastore.default.bronze_pittsbur
 display(row_count)
 
 
-df = spark.table('defaul.bronze_pittsburgh_rev_exp')
+df = spark.table('default.bronze_pittsburgh_rev_exp')
 
 # COMMAND ----------
 
